@@ -3,6 +3,7 @@ import usb_midi
 import storage
 import board
 import digitalio
+import supervisor
 
 GAMEPAD_REPORT_DESCRIPTOR = bytes((
     0x05, 0x01,  # Usage Page (Generic Desktop Ctrls)
@@ -57,16 +58,16 @@ gamepad = usb_hid.Device(
     out_report_lengths=(0,),   # It does not receive any reports.
 )
 
+supervisor.set_usb_identification(manufacturer='BumbleGum', product='CH-Guitar', vid=0x6997, pid=0x0001)
+usb_hid.set_interface_name("BumbleGum Guitars - NAME")
 usb_hid.enable((gamepad,))
 usb_midi.disable()
 
-button = digitalio.DigitalInOut(board.GP2)
+'''
+button = digitalio.DigitalInOut(board.GP6) # GREEN FRET
 button.switch_to_input(pull=digitalio.Pull.UP)
 
 if button.value:
     storage.disable_usb_drive()    # Hide drive
     usb_cdc.disable()              # REPL off
-'''
-if not button.value:
-    storage.remount("/", False)
 '''
