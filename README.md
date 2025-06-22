@@ -1,10 +1,15 @@
-# Pico Gamecon 
-Pico Gamecon\
-Raspberry Pi Pico Gamepad using CircuitPython 7.x
+# Pico Gamecon Guitar 
+Pico Gamecon Guitar\
+Raspberry Pi Pico Guitar controller using CircuitPython 9.x
 
 Supports 16 buttons, 4-way Joystick, 1 analog stick and NeoPixel WS2812B strip
  
 ## Changelog
+- v 1.6
+  * Modify button descriptors
+  * Updated libraries for use with CP9
+  * Add Z-axis (Whammy)
+
 - v 1.5
   * Add analog input (disabled default, should change config.py)
 
