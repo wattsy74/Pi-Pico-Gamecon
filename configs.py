@@ -27,8 +27,6 @@ ORANGE_FRET_COLOUR = ORANGE
 STRUM_UP_COLOUR = PURPLE
 STRUM_DOWN_COLOUR = JADE
 
-# Comment
-
 config = {
    # 4way Joystick pins
    # You can set NeoPixel LED index number with "~_led" parameter / comment out anything if you don't need LED
