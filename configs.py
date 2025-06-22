@@ -19,10 +19,17 @@ AQUA = (50, 255, 255)
 JADE = (0, 255, 40)
 AMBER = (255, 100, 0)
 
+GREEN_FRET_COLOUR = GREEN
+RED_FRET_COLOUR = RED
+YELLOW_FRET_COLOUR = YELLOW
+BLUE_FRET_COLOUR = BLUE
+ORANGE_FRET_COLOUR = ORANGE
+STRUM_UP_COLOUR = PURPLE
+STRUM_DOWN_COLOUR = JADE
+
 config = {
    # 4way Joystick pins
    # You can set NeoPixel LED index number with "~_led" parameter / comment out anything if you don't need LED
-   # 방향키 핀 및 LED 지정
    "UP":board.GP2,
    #"UP_led": 0,
    "DOWN":board.GP3,
@@ -32,65 +39,53 @@ config = {
    "RIGHT":board.GP5,
    #"RIGHT_led": 0,
    # Buttons - up to 16
-   # 1:A, 2:B, 3:RB, 4:X, 5:Y, 6:RB, 7:LT, 8:RT, 9:L2, 10:R2, 11:SELECT, 12:START, 13:EX1, 14:LS, 15:RS, 16:EX2
+   # ['GREEN_FRET', 'RED_FRET', 'YELLOW_FRET', 'BLUE_FRET', 'ORANGE_FRET', 'STRUM_UP', 'STRUM_DOWN', 'TILT', 'SELECT', 'START', 'SB1', 'SB2', 'SB3', 'SB4', 'SB5', 'SB6']
    # You can set NeoPixel LED index number with "~_led" parameter :
-   #   5-4-3-
-   #   0-1-2-
    # comment out anything if you don't need
-   # 버튼 설정 - 최대 16개까지 가능
-   # 사용할 버튼 항목만 주석 삭제 후 설정
-   # LED가 있을시 "버튼_led"값으로 번호 설정, 없을시 주석처리하거나 생략
-   "A":board.GP6,
-   "A_led": 0,
-   "B":board.GP7,
-   "B_led": 1,
-   "X":board.GP8,
-   "X_led": 5,
-   "Y":board.GP9,
-   "Y_led": 4,
-   "LB":board.GP10,
-   "LB_led": 3,
-   "RB":board.GP11,
-   "RB_led": 2,
-   "START":board.GP12,
-   #"START_led": 6,
-   "SELECT":board.GP13,
-   #"SELECT_led": 7,
-   "LT":board.GP16,
-   #"LT_led": 8,
-   "RT":board.GP17,
-   #"RT_led": 9,
-   #"L3":board.GP18,
-   #"R3":board.GP19,
-   #"PS":board.GP18,
-   #"TP":board.GP19,
-   #"EX1":board.GP20,
-   #"EX2":board.GP21,
-   "TURBO":board.GP20,
-   "MODE":board.GP21,
+   "GREEN_FRET":board.GP6,
+   "GREEN_FRET_led": 0,
+   "RED_FRET":board.GP7,
+   "RED_FRET_led": 1,
+   "YELLOW_FRET":board.GP8,
+   "YELLOW_FRET_led": 2,
+   "BLUE_FRET":board.GP9,
+   "BLUE_FRET_led": 3,
+   "ORANGE_FRET":board.GP10,
+   "ORANGE_FRET_led": 4,
+   "STRUM_UP":board.GP11,
+   "STRUM_UP_led": 5,
+   "STRUM_DOWN":board.GP12,
+   "STRUM_DOWN_led": 6,
+   "TILT":board.GP13,
+   #"TILT_led": 7,
+   "SELECT":board.GP16,
+   #"SELECT_led": 8,
+   "START":board.GP17,
+   #"START_led": 9,
+   #"SB1":board.GP18,
+   #"SB2":board.GP19,
+   #"SB3":board.GP18,
+   #"SB4":board.GP19,
+   #"SB5":board.GP20,
+   #"SB6":board.GP21,
+   #"TURBO":board.GP20,
+   #"MODE":board.GP21,
    # Pins for anlog input - should be ADC pin
    #"AnalogX":board.GP27,
    #"AnalogY":board.GP26,
+   "WHAMMY":board.GP28,
 
    # NeoPixel - WS2812
-   # 네오픽셀 ws2812b 핀 설정
-   # LED가 없을 경우 주석처리
    "neopixel_pin": board.GP0,
-   # RED, YELLOW, GREEN, CYAN, BLUE, PURPLE, GREY, WHITE
    # RGB LED Color, must set as many as LED lights you have
-   # 버튼 별 기본 색상 설정 *LED 개수 만큼 지정할 것
-   "led_color": [GREEN, RED, CYAN, CYAN, YELLOW, BLUE ],
+   "led_color": [GREEN_FRET_COLOUR, RED_FRET_COLOUR, YELLOW_FRET_COLOUR, BLUE_FRET_COLOUR, ORANGE_FRET_COLOUR, STRUM_UP_COLOUR, STRUM_DOWN_COLOUR ],
    # Default color for buttons with no assigned color
    "default_color":GREY,
-   # LED 밝기 1이 최대
    "led_brightness": 1, # 1 is maximum value
-   # 버튼 디밍 단계 (0~255), 높을수록 빨리 꺼짐
    "fadingstep" : 10, # Dimming speed - higher, faster
-   # 대기모드 진입 시간 (초)
-   "activetime" : 5, # Standby mode entry time(sec)
+   "activetime" : 20, # Standby mode entry time(sec)
 
    # Defult DPAD mode - 'axis' or 'hat'
-   # 조이스틱 모드 설정 'axis' 또는 'hat'
    "dpad_mode": "hat",
    # Turbo button speed (sec)
    "turbo_speed": 0.04,
