@@ -63,11 +63,9 @@ usb_hid.set_interface_name("BumbleGum Guitars - NAME")
 usb_hid.enable((gamepad,))
 usb_midi.disable()
 
-'''
 button = digitalio.DigitalInOut(board.GP6) # GREEN FRET
 button.switch_to_input(pull=digitalio.Pull.UP)
 
 if button.value:
     storage.disable_usb_drive()    # Hide drive
     usb_cdc.disable()              # REPL off
-'''
