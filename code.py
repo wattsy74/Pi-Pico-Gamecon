@@ -1,6 +1,10 @@
 # losernator
 # License-Identifier: MIT
 # 2022/05/03
+
+# Modified by M.Watts (mwatts@BumbleGum.co.uk)
+# 2025/06/21
+
 import time
 import board
 import digitalio
@@ -19,10 +23,7 @@ turbo_status = []
 button_pins = []
 gamepad_buttons = []
 button_leds = []
-# 1:A, 2:B, 3:RB, 4:X, 5:Y, 6:LB, 7:LT, 8:RT, 9:L2, 10:R2, 11:SELECT, 12:START, 13:EX1, 14:THUMBL, 15:THUMBR, 16:EX2
-# button_keys = ['A', 'B', 'RB', 'X', 'Y', 'LB', 'LT', 'RT', 'L3', 'R3', 'SELECT', 'START', 'PS', 'TP', 'EX1', 'EX2']
-# D-Input layout for tekknen
-button_keys = ['X', 'A', 'B', 'Y', 'LB', 'RB', 'LT', 'RT', 'SELECT', 'START', 'L3', 'R3', 'PS', 'TP', 'EX1', 'EX2']
+button_keys = ['GREEN_FRET', 'RED_FRET', 'YELLOW_FRET', 'BLUE_FRET', 'ORANGE_FRET', 'STRUM_UP', 'STRUM_DOWN', 'TILT', 'SELECT', 'START', 'SB1', 'SB2', 'SB3', 'SB4', 'SB5', 'SB6']
 for i, button in enumerate(button_keys):
     if config.get(button):
         button_pins.append(config.get(button))
@@ -89,6 +90,12 @@ if config.get('AnalogX'):
     isAnalog = True
 else:
     isAnalog = False
+    
+if config.get('WHAMMY'):
+    az = analogio.AnalogIn(config.get('WHAMMY'))
+    isWHAMMY = True
+else:
+    isWHAMMY = False
 
 #NeoPixel
 if config.get('neopixel_pin'):
@@ -122,7 +129,7 @@ def rainbow(speed):
                     ebreak = True
                     break
             if isAnalog:
-                if not analog_check(ax.value) == 127 or not analog_check(ay.value) == 127 :
+                if not analog_check(ax.value) == 127 or not analog_check(ay.value) == 127 or not analog_check(az.value) == 127 :
                     ebreak = True
                     break
             if (ebreak):
@@ -227,7 +234,7 @@ while True:
             if not button_leds[i] == -1 and Neopixel:
                 pixelfading(button_leds[i])
     # Joystick
-    x = y = 127
+    x = y = z = 127
     hatstring = ''
     for i, dpad in enumerate(dpads):
         if not dpad.value:
@@ -250,10 +257,13 @@ while True:
         else:
             x = analog_check(ax.value)
             y = analog_check(ay.value)
-    if not x == 127 or not y == 127 or not hatstring == "":
+    if isWHAMMY :
+        z = analog_check(az.value)
+            
+    if not x == 127 or not y == 127 or not z == 127 or not hatstring == "":
         current_time = time.monotonic()
 
-    gp.move_joysticks(x, y)
+    gp.move_joysticks(x, y, z)
     gp.hat_pos(hatposition[hatstring])
     if Neopixel:
         pixels.show()
