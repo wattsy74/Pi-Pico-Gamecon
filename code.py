@@ -23,7 +23,7 @@ turbo_status = []
 button_pins = []
 gamepad_buttons = []
 button_leds = []
-button_keys = ['GREEN_FRET', 'RED_FRET', 'YELLOW_FRET', 'BLUE_FRET', 'ORANGE_FRET', 'STRUM_UP', 'STRUM_DOWN', 'TILT', 'SELECT', 'START', 'SB1', 'SB2', 'SB3', 'SB4', 'SB5', 'SB6']
+button_keys = ['GREEN_FRET', 'RED_FRET', 'YELLOW_FRET', 'BLUE_FRET', 'ORANGE_FRET', 'STRUM_UP', 'STRUM_DOWN', 'TILT', 'SELECT', 'START', 'GUIDE', 'SB2', 'SB3', 'SB4', 'SB5', 'SB6']
 for i, button in enumerate(button_keys):
     if config.get(button):
         button_pins.append(config.get(button))
@@ -90,7 +90,7 @@ if config.get('AnalogX'):
     isAnalog = True
 else:
     isAnalog = False
-    
+
 if config.get('WHAMMY'):
     az = analogio.AnalogIn(config.get('WHAMMY'))
     isWHAMMY = True
@@ -99,6 +99,7 @@ else:
 
 #NeoPixel
 if config.get('neopixel_pin'):
+    released_color = config.get('released_color')
     default_color = config.get('default_color')
     led_color = config.get('led_color')
     num_pixels = max([max(button_leds),max(dpad_leds)])+1
@@ -212,7 +213,7 @@ while True:
                 if button_toggle:
                     gp.release_buttons(button_num)
                     if not button_leds[i] == -1 and Neopixel:
-                        pixels[button_leds[i]] = (0,0,0)
+                        pixels[button_leds[i]] = (255,0,0)
                 else:
                     gp.press_buttons(button_num)
                     if not button_leds[i] == -1 and Neopixel:
@@ -232,7 +233,7 @@ while True:
         else:
             gp.release_buttons(button_num)
             if not button_leds[i] == -1 and Neopixel:
-                pixelfading(button_leds[i])
+                pixels[button_leds[i]] = released_color
     # Joystick
     x = y = z = 127
     hatstring = ''
@@ -259,7 +260,7 @@ while True:
             y = analog_check(ay.value)
     if isWHAMMY :
         z = analog_check(az.value)
-            
+
     if not x == 127 or not y == 127 or not z == 127 or not hatstring == "":
         current_time = time.monotonic()
 

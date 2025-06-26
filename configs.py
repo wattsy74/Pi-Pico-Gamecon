@@ -24,45 +24,38 @@ RED_FRET_COLOUR = RED
 YELLOW_FRET_COLOUR = YELLOW
 BLUE_FRET_COLOUR = BLUE
 ORANGE_FRET_COLOUR = ORANGE
-STRUM_UP_COLOUR = PURPLE
+STRUM_UP_COLOUR = BLUE
 STRUM_DOWN_COLOUR = JADE
 
 config = {
    # 4way Joystick pins
    # You can set NeoPixel LED index number with "~_led" parameter / comment out anything if you don't need LED
    "UP":board.GP2,
-   #"UP_led": 0,
    "DOWN":board.GP3,
-   #"DOWN_led": 0,
    "LEFT":board.GP4,
-   #"LEFT_led": 0,
    "RIGHT":board.GP5,
-   #"RIGHT_led": 0,
    # Buttons - up to 16
    # ['GREEN_FRET', 'RED_FRET', 'YELLOW_FRET', 'BLUE_FRET', 'ORANGE_FRET', 'STRUM_UP', 'STRUM_DOWN', 'TILT', 'SELECT', 'START', 'SB1', 'SB2', 'SB3', 'SB4', 'SB5', 'SB6']
    # You can set NeoPixel LED index number with "~_led" parameter :
    # comment out anything if you don't need
-   "GREEN_FRET":board.GP6,
-   "GREEN_FRET_led": 0,
-   "RED_FRET":board.GP7,
-   "RED_FRET_led": 1,
-   "YELLOW_FRET":board.GP8,
-   "YELLOW_FRET_led": 2,
-   "BLUE_FRET":board.GP9,
+   "GREEN_FRET":board.GP10,
+   "GREEN_FRET_led": 6,
+   "RED_FRET":board.GP11,
+   "RED_FRET_led": 5,
+   "YELLOW_FRET":board.GP12,
+   "YELLOW_FRET_led": 4,
+   "BLUE_FRET":board.GP13,
    "BLUE_FRET_led": 3,
-   "ORANGE_FRET":board.GP10,
-   "ORANGE_FRET_led": 4,
-   "STRUM_UP":board.GP11,
-   "STRUM_UP_led": 5,
-   "STRUM_DOWN":board.GP12,
-   "STRUM_DOWN_led": 6,
-   "TILT":board.GP13,
-   #"TILT_led": 7,
-   "SELECT":board.GP16,
-   #"SELECT_led": 8,
-   "START":board.GP17,
-   #"START_led": 9,
-   #"SB1":board.GP18,
+   "ORANGE_FRET":board.GP14,
+   "ORANGE_FRET_led": 2,
+   "STRUM_UP":board.GP7,
+   "STRUM_UP_led": 0,
+   "STRUM_DOWN":board.GP8,
+   "STRUM_DOWN_led": 1,
+   "TILT":board.GP9,
+   "SELECT":board.GP0,
+   "START":board.GP1,
+   "GUIDE":board.GP6,
    #"SB2":board.GP19,
    #"SB3":board.GP18,
    #"SB4":board.GP19,
@@ -71,16 +64,17 @@ config = {
    #"TURBO":board.GP20,
    #"MODE":board.GP21,
    # Pins for anlog input - should be ADC pin
-   #"AnalogX":board.GP27,
-   #"AnalogY":board.GP26,
-   "WHAMMY":board.GP28,
+   "WHAMMY":board.GP27,
+   #"AnalogX":board.GP28,
+   #"AnalogY":board.GP29,
 
    # NeoPixel - WS2812
-   "neopixel_pin": board.GP0,
+   "neopixel_pin": board.GP23,
    # RGB LED Color, must set as many as LED lights you have
-   "led_color": [GREEN_FRET_COLOUR, RED_FRET_COLOUR, YELLOW_FRET_COLOUR, BLUE_FRET_COLOUR, ORANGE_FRET_COLOUR, STRUM_UP_COLOUR, STRUM_DOWN_COLOUR ],
+   "led_color": [STRUM_UP_COLOUR, STRUM_DOWN_COLOUR, ORANGE_FRET_COLOUR, BLUE_FRET_COLOUR, YELLOW_FRET_COLOUR, RED_FRET_COLOUR, GREEN_FRET_COLOUR],
    # Default color for buttons with no assigned color
    "default_color":GREY,
+   "released_color":BLACK,
    "led_brightness": 1, # 1 is maximum value
    "fadingstep" : 10, # Dimming speed - higher, faster
    "activetime" : 20, # Standby mode entry time(sec)

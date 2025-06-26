@@ -59,11 +59,11 @@ gamepad = usb_hid.Device(
 )
 
 supervisor.set_usb_identification(manufacturer='BumbleGum', product='CH-Guitar', vid=0x6997, pid=0x0001)
-usb_hid.set_interface_name("BumbleGum Guitars - NAME")
+usb_hid.set_interface_name("BumbleGum Guitars - Guns N Roses")
 usb_hid.enable((gamepad,))
 usb_midi.disable()
 
-button = digitalio.DigitalInOut(board.GP6) # GREEN FRET
+button = digitalio.DigitalInOut(board.GP10) # GREEN FRET
 button.switch_to_input(pull=digitalio.Pull.UP)
 
 if button.value:
