@@ -28,7 +28,7 @@ Supports 16 buttons, 4-way Joystick, 1 analog stick and NeoPixel WS2812B strip
 https://circuitpython.org/board/raspberry_pi_pico/
 
 ### PINOUT
-![Pico Gamecon pinout](picocon_pinout.png)
+![Pinout](pinout.png)
 
 ### Options (configs.py):
 - Pin number
